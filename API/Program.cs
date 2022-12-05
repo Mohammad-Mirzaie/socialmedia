@@ -8,15 +8,15 @@ namespace API
         public static async Task Main(string[] args)
         {
             // CreateHostBuilder(args).Build().Run();
-             var host = CreateHostBuilder(args).Build();
+            var host = CreateHostBuilder(args).Build();
             using var scope = host.Services.CreateScope();
             var service = scope.ServiceProvider;
 
             try
             {
-                    var context = service.GetRequiredService<DataContext>();
-                    await context.Database.MigrateAsync();
-                    await Seed.SeedData(context);
+                var context = service.GetRequiredService<DataContext>();
+                await context.Database.MigrateAsync();
+                await Seed.SeedData(context);
             }
             catch(Exception ex)
             {
